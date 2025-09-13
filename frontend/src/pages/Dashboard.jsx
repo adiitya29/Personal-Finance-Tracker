@@ -132,18 +132,4 @@ const Dashboard = ({ user,onLogout }) => {
   );
 };
 
-
-//   return (
-//     <div className="p-6">
-//       <h2 className="text-2xl">Welcome, {user.name}</h2>
-
-//       {warning && <p className="mt-2 text-red-600">{warning}</p>}
-
-//       <TransactionForm fetchTransactions={fetchTransactions} />
-//       <TransactionList transactions={transactions} fetchTransactions={fetchTransactions}/>
-//       <Charts pieData={pieData} barData={barData} stackedData={stackedData} />
-//     </div>
-//   );
-// };
-
 export default Dashboard;
