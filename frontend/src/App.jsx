@@ -11,17 +11,17 @@ const handleLogin =(userData, token)=>{
       setUser(userData);
   }
 
-  //logout handle
-  // const handleLogout = () => {
-  //   localStorage.removeItem("user");
-  //   localStorage.removeItem("token");
-  //   setUser(null); // This will redirect back to AuthForm
-  // };
+  //logout handler
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    setUser(null); // This will redirect back to AuthForm
+  };
 
   if (!user) return <AuthForm setUser={setUser} />;
-  // return <Dashboard user={user} onLogout={handleLogout} />;
+  return <Dashboard user={user} onLogout={handleLogout} />;
 
-  return <Dashboard user={user} />;
+  // return <Dashboard user={user} />;
 }
 
 export default App;

@@ -8,7 +8,7 @@ const THRESHOLD = 10000;
 
 
 //below onLogout prop added
-const Dashboard = ({ user }) => {
+const Dashboard = ({ user,onLogout }) => {
   const [transactions, setTransactions] = useState([]);
   const [warning, setWarning] = useState("");
   const [pieData, setPieData] = useState([]);
@@ -85,16 +85,65 @@ const Dashboard = ({ user }) => {
   }, []);
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl">Welcome, {user.name}</h2>
+    <div className="min-h-screen bg-gray-50">
+      {/* ✅ Header with Welcome message and Logout button */}
+      <div className="bg-white shadow-sm border-b">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Personal Finance Tracker</h1>
+            <p className="text-gray-600">Welcome back, {user.name}!</p>
+          </div>
+          
+          {/* ✅ Red Logout Button on the right */}
+          <button
+            onClick={onLogout}
+            className="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 flex items-center gap-2"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            Logout
+          </button>
+        </div>
+      </div>
 
-      {warning && <p className="mt-2 text-red-600">{warning}</p>}
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        {/* Warning message */}
+        {warning && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
+            {warning}
+          </div>
+        )}
 
-      <TransactionForm fetchTransactions={fetchTransactions} />
-      <TransactionList transactions={transactions} fetchTransactions={fetchTransactions}/>
-      <Charts pieData={pieData} barData={barData} stackedData={stackedData} />
+        {/* Transaction Form */}
+        <div className="mb-8">
+          <TransactionForm fetchTransactions={fetchTransactions} />
+        </div>
+
+        {/* Charts */}
+        <div className="mb-8">
+          <Charts pieData={pieData} barData={barData} stackedData={stackedData} />
+        </div>
+
+        {/* Transaction List */}
+        <TransactionList transactions={transactions} fetchTransactions={fetchTransactions} />
+      </div>
     </div>
   );
 };
+
+
+//   return (
+//     <div className="p-6">
+//       <h2 className="text-2xl">Welcome, {user.name}</h2>
+
+//       {warning && <p className="mt-2 text-red-600">{warning}</p>}
+
+//       <TransactionForm fetchTransactions={fetchTransactions} />
+//       <TransactionList transactions={transactions} fetchTransactions={fetchTransactions}/>
+//       <Charts pieData={pieData} barData={barData} stackedData={stackedData} />
+//     </div>
+//   );
+// };
 
 export default Dashboard;
